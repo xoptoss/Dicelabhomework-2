@@ -1,26 +1,29 @@
 package yammy.main;
 
-import java.util.Random;
-
 public class DiceRoller implements Runnable {
 
-	private final int sleepTime;
-	private final String taskName;
-	private final static Random random = new Random();
+	private final String taskName;//so you cant change the name
 
 	public DiceRoller(String name)
 	{
-		taskName = name; 
-		sleepTime = random.nextInt(5000);
-		System.out.println(taskName);
-		
+		taskName = name; //sets taskName
 	}
 
 	public void run() {		
-		Runnable T1 = new MyThread(taskName);
-		Thread worker = new Thread(T1);
-		worker.setName(taskName);
-		worker.start();
+		//try catch
+		try{
+			System.out.printf("%s Starto\n",taskName);
+			Runnable T1 = new MyThread(taskName);//make new thread 
+			Thread worker = new Thread(T1);
+			worker.setName(taskName);//set name
+			worker.start();//starto
+		}
+		catch(Exception e)
+		{
+			System.out.printf("%s %s\n",taskName,"terminated prematurely due to interruption");
+		}
+		//when its done
+		System.out.printf("%s done Throwing\n",taskName);
 	}
 
 }
