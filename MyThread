@@ -1,0 +1,15 @@
+package yammy.main;
+
+public class MyThread implements Runnable {
+	private final String Name;
+	public MyThread(String taskName) {
+		Name = taskName;
+	}
+
+	public void run(){
+		long sum = 0;
+		Dice dice = new Dice();
+		sum+=dice.roll();
+		System.out.println("dice "+Name+" landed on "+sum);
+	}
+}
